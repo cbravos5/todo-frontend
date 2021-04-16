@@ -1,0 +1,92 @@
+.todo-wrapper {
+  width: 400px;
+  height: 82px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: rgba(255, 255, 255, 0.6);
+  border: 2px solid rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+
+  margin: 10px auto;
+
+  transition: all 0.5s ease;
+}
+
+.todo-wrapper:hover {
+  transform: translateX(5px);
+}
+
+.todo-actions {
+  width: 80;
+}
+
+.todo-actions button {
+  display: block;
+
+  height: 26px;
+  width: 84px;
+
+  border: none;
+
+  font-size: 24px;
+
+  cursor: pointer;
+}
+
+.todo-actions button:nth-child(1) {
+  border-top-left-radius: 2px;
+  background-color: rgba(12, 65, 255, 0.6);
+}
+
+.todo-actions button:nth-child(2) {
+  background-color: rgba(129, 126, 126, 0.6);
+}
+
+.todo-actions button:nth-child(3) {
+  border-bottom-left-radius: 2px;
+  background-color: rgba(255, 0, 0, 0.6);
+}
+
+.todo-actions button:hover {
+  filter: brightness(80%);
+  color: white;
+}
+
+.todo-actions button:active {
+  border: 1px solid rgba(0, 0, 0, 0.6);
+}
+
+.todo-title h3 {
+  font-size: 1.3rem;
+  cursor: context-menu;
+}
+
+.drag-pin {
+  width: 34px;
+  height: 78px;
+
+  background-color: rgba(0, 0, 0, 0.8);
+
+  border-radius: 0px 2px 2px 0px;
+
+  cursor: grab;
+}
+
+.drag-pin i {
+  width: 15px;
+  height: 15px;
+
+  display: block;
+  margin: 31.5px auto;
+
+  background-color: #fff;
+
+  border-radius: 100%;
+}
+
+.drag-pin:active {
+  cursor: grabbing;
+}
