@@ -1,22 +1,12 @@
 import React from "react";
+import { Droppable } from "react-beautiful-dnd";
 
 interface Props {
-  secName: string;
-  color: string;
   children?: React.ReactNode;
 }
 
-const TodoSection: React.FC<Props> = ({ secName, children, color }) => {
-  const borderColor = `bd-${color}`;
-
-  return (
-    <section className={`section-todo ${borderColor}`}>
-      <div className={`section-tag ${borderColor}`}>
-        <h1>{secName}</h1>
-      </div>
-      <div>{children}</div>
-    </section>
-  );
+const TodoSection: React.FC<Props> = ({ children }) => {
+  return <div>{children}</div>;
 };
 
 export default TodoSection;
