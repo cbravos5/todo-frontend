@@ -1,22 +1,11 @@
 import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import Todo from "./Todo";
-
-interface IColumn {
-  id: string;
-  title: string;
-  todoIds: string[];
-  color: string;
-}
-
-interface ITodos {
-  id: "todo-1";
-  content: "Teste 1";
-}
+import { ITodo, IColumn } from "../data";
 
 interface Props {
   column: IColumn;
-  todos: ITodos[];
+  todos: ITodo[];
 }
 
 const Column: React.FC<Props> = ({ column, todos }) => {

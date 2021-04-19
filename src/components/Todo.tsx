@@ -1,11 +1,7 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { MdRemoveRedEye, MdModeEdit, MdDelete } from "react-icons/md";
-
-interface ITodo {
-  id: string;
-  content: string;
-}
+import { ITodo } from "../data";
 
 interface Props {
   todo: ITodo;

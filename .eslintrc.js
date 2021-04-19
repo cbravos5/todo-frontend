@@ -1,10 +1,7 @@
 module.exports = {
   rules: {
     "@typescript-eslint/ban-ts-ignore": ["off"],
-    "@typescript-eslint/camelcase": ["off"],
-    "@typescript-eslint/explicit-function-return-type": ["off"],
     "@typescript-eslint/interface-name-prefix": ["off"],
-    "@typescript-eslint/no-explicit-any": ["off"],
     "@typescript-eslint/no-unused-expressions": ["off"],
     "@typescript-eslint/no-var-requires": ["off"],
     "@typescript-eslint/no-use-before-define": ["off"],
@@ -39,4 +36,8 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["prettier", "@typescript-eslint"],
+  globals: {
+    React: true,
+    JSX: true,
+  },
 };
