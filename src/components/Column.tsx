@@ -1,30 +1,26 @@
 import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import Todo from "./Todo";
-import TodoSection from "./TodoSection";
 
 interface IColumn {
   id: string;
   title: string;
   todoIds: string[];
+  color: string;
 }
 
 interface ITodos {
-  [propName: string]: {
-    id: string;
-    content: string;
-  };
+  id: "todo-1";
+  content: "Teste 1";
 }
 
 interface Props {
   column: IColumn;
-  todos: ITodos;
-  color: string;
+  todos: ITodos[];
 }
 
-const Column: React.FC<Props> = ({ column, todos, color }) => {
-  const borderColor = `bd-${color}`;
-  const columnTodos = column.todoIds.map(todoId => todos[todoId]);
+const Column: React.FC<Props> = ({ column, todos }) => {
+  const borderColor = `bd-${column.color}`;
 
   return (
     <div className={`section-todo ${borderColor}`}>
@@ -32,9 +28,9 @@ const Column: React.FC<Props> = ({ column, todos, color }) => {
         <h1>{column.title}</h1>
       </div>
       <Droppable droppableId={column.id}>
-        {provided => (
+        {(provided) => (
           <div ref={provided.innerRef} {...provided.droppableProps}>
-            {columnTodos.map((todo, index) => (
+            {todos.map((todo, index) => (
               <Todo key={todo.id} todo={todo} index={index} />
             ))}
             {provided.placeholder}

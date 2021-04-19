@@ -9,7 +9,7 @@ import data from "./data";
 class App extends React.Component {
   state = data;
 
-  onDragEnd = (result: DropResult) => {
+  onDragEnd = (result: DropResult): void => {
     const { destination, source, draggableId } = result;
 
     if (!destination) {
@@ -23,28 +23,58 @@ class App extends React.Component {
       return;
     }
 
-    const column = this.state.columns[source.droppableId];
-    const newTodoIds = Array.from(column.todoIds);
-    newTodoIds.splice(source.index, 1);
-    newTodoIds.splice(destination.index, 0, draggableId);
+    const start = this.state.columns[source.droppableId];
+    const finish = this.state.columns[destination.droppableId];
 
-    const newColumn = {
-      ...column,
-      todoIds: newTodoIds,
+    if (start === finish) {
+      const newTodoIds = Array.from(start.todoIds);
+      newTodoIds.splice(source.index, 1);
+      newTodoIds.splice(destination.index, 0, draggableId);
+
+      const newColumn = {
+        ...start,
+        todoIds: newTodoIds,
+      };
+
+      const newState = {
+        ...this.state,
+        columns: {
+          ...this.state.columns,
+          [newColumn.id]: newColumn,
+        },
+      };
+
+      this.setState(newState);
+      return;
+    }
+
+    const startTodoIds = Array.from(start.todoIds);
+    startTodoIds.splice(source.index, 1);
+    const newStart = {
+      ...start,
+      todoIds: startTodoIds,
+    };
+
+    const finishTodoIds = Array.from(finish.todoIds);
+    finishTodoIds.splice(destination.index, 0, draggableId);
+    const newFinish = {
+      ...finish,
+      todoIds: finishTodoIds,
     };
 
     const newState = {
       ...this.state,
       columns: {
         ...this.state.columns,
-        [newColumn.id]: newColumn,
+        [newStart.id]: newStart,
+        [newFinish.id]: newFinish,
       },
     };
 
     this.setState(newState);
   };
 
-  render() {
+  render(): React.ReactNode {
     return (
       <>
         <div className="section">
@@ -53,11 +83,13 @@ class App extends React.Component {
         </div>
         <DragDropContext onDragEnd={this.onDragEnd}>
           <div className="dnd-container">
-            <Column
-              column={this.state.columns["column-1"]}
-              color="warning"
-              todos={this.state.todos}
-            />
+            {this.state.columnOrder.map((columnId: string) => {
+              const column = this.state.columns[columnId];
+              const todos = column.todoIds.map(
+                (todoId: string) => this.state.todos[todoId],
+              );
+              return <Column key={column.id} column={column} todos={todos} />;
+            })}
           </div>
         </DragDropContext>
       </>

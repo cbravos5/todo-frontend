@@ -15,7 +15,7 @@ interface Props {
 const Todo: React.FC<Props> = ({ todo, index }) => {
   return (
     <Draggable draggableId={todo.id} index={index}>
-      {provided => (
+      {(provided, snapshot) => (
         <div
           className="todo-wrapper"
           {...provided.draggableProps}
@@ -35,7 +35,10 @@ const Todo: React.FC<Props> = ({ todo, index }) => {
           <div className="todo-title">
             <h3>{todo.content}</h3>
           </div>
-          <div className="drag-pin" {...provided.dragHandleProps}>
+          <div
+            className={`drag-pin ${snapshot.isDragging && "dragging"}`}
+            {...provided.dragHandleProps}
+          >
             <i></i>
           </div>
         </div>
