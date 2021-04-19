@@ -1,4 +1,26 @@
-const data: any = {
+export interface IColumn {
+  id: string;
+  title: string;
+  todoIds: string[];
+  color: string;
+}
+
+export interface ITodo {
+  id: string;
+  content: string;
+}
+
+export interface IData {
+  todos: {
+    [propName: string]: ITodo;
+  };
+  columns: {
+    [propName: string]: IColumn;
+  };
+  columnOrder: string[];
+}
+
+const data: IData = {
   todos: {
     "todo-1": { id: "todo-1", content: "Teste 1" },
     "todo-2": { id: "todo-2", content: "Teste 2" },
@@ -25,10 +47,3 @@ const data: any = {
 };
 
 export default data;
-
-export interface IColumn {
-  id: string;
-  title: string;
-  todoIds: string[];
-  color: string;
-}
