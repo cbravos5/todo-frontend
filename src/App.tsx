@@ -3,16 +3,23 @@ import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import Column from "./components/Column";
 import "./styles/page.css";
 import "./styles/todo.css";
+import "./styles/form.css";
 import onDrop from "./onDrop";
 import { useGlobalContext } from "./context";
+import TodoForm from "./components/TodoForm";
 
-const App = (): JSX.Element => {
-  const { state, setState } = useGlobalContext();
+const App: React.FC<Record<string, never>> = () => {
+  const { state, setState, showForm, setShowForm } = useGlobalContext();
   return (
     <>
       <div className="section">
         <p>Click to add a new ToDo</p>
-        <button className="btn btn-lg btn-secondary">new</button>
+        <button
+          className="btn btn-lg btn-secondary"
+          onClick={() => setShowForm(true)}
+        >
+          new
+        </button>
       </div>
       <DragDropContext
         onDragEnd={(result: DropResult) => setState(onDrop(result, state))}
@@ -27,6 +34,11 @@ const App = (): JSX.Element => {
           })}
         </div>
       </DragDropContext>
+      {showForm && (
+        <div className="highligth">
+          <TodoForm />
+        </div>
+      )}
     </>
   );
 };
