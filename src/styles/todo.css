@@ -1,16 +1,16 @@
 .todo-wrapper {
   width: 400px;
-  height: 82px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
   background: rgba(255, 255, 255, 0.6);
   border: 2px solid rgba(0, 0, 0, 0.6);
   border-radius: 4px;
 
   margin: 10px auto;
+}
+
+.todo-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .todo-actions {
@@ -87,4 +87,47 @@
 
 .drag-pin:active {
   cursor: grabbing;
+}
+
+.todo-info {
+  display: grid;
+
+  grid-template-columns: 66% 33%;
+
+  align-items: center;
+
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.todo-wrapper hr {
+  margin-top: -1px;
+  margin-bottom: 0;
+
+  background-color: black;
+
+  width: 100%;
+}
+
+.todo-info p,
+.todo-info h3 {
+  margin: 4px;
+}
+
+.todo-info p {
+  background: #fff;
+  box-shadow: 0px 3px 6px rgba(14, 31, 53, 0.08),
+    0px 6px 12px rgba(14, 31, 53, 0.12), 0px 14px 24px rgba(14, 31, 53, 0.08);
+}
+
+.todo-info p:nth-of-type(1) {
+  font-size: 16px;
+
+  margin-right: 8px;
+}
+
+.todo-info p:nth-of-type(2) {
+  font-size: 18px;
+
+  margin-left: 8px;
 }

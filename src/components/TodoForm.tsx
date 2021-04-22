@@ -11,7 +11,12 @@ const TodoForm: React.FC<Record<string, never>> = () => {
 
   const handleInput = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const newTodo = { id: title, content: title };
+    const newTodo = {
+      id: title,
+      title,
+      description,
+      deadline: String(deadline),
+    };
 
     const hasTodo = state.todos[newTodo.id];
 
