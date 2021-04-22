@@ -66,6 +66,7 @@ button:active {
   min-height: 164px;
 
   margin: 0 auto;
+  margin-bottom: 3rem;
 
   border-radius: 10px;
   border-width: 3px;
