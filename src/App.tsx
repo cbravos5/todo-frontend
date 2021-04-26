@@ -1,22 +1,31 @@
-import React from "react";
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import Column from "./components/Column";
-import "./styles/page.css";
-import "./styles/todo.css";
-import "./styles/form.css";
-import onDrop from "./onDrop";
-import { useGlobalContext } from "./context";
-import TodoForm from "./components/TodoForm";
+import React from 'react';
+import { DragDropContext, DropResult } from 'react-beautiful-dnd';
+import Column from './components/Column';
+import './styles/page.css';
+import './styles/todo.css';
+import './styles/form.css';
+import onDrop from './onDrop';
+import { useGlobalContext } from './context';
+import TodoForm from './components/TodoForm';
 
 const App: React.FC<Record<string, never>> = () => {
-  const { state, setState, showForm, setShowForm } = useGlobalContext();
+  const {
+    state,
+    setState,
+    showForm,
+    setShowForm,
+    setTodoId,
+  } = useGlobalContext();
   return (
     <>
       <div className="section">
         <p>Click to add a new ToDo</p>
         <button
           className="btn btn-lg btn-secondary"
-          onClick={() => setShowForm(true)}
+          onClick={() => {
+            setTodoId(undefined);
+            setShowForm(true);
+          }}
         >
           new
         </button>

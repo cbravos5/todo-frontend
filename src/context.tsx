@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import data, { IData } from "./data";
+import React, { useContext, useState } from 'react';
+import data, { IData } from './data';
 
 const AppContext = React.createContext({});
 
@@ -12,11 +12,14 @@ interface contextData {
   setState: React.Dispatch<React.SetStateAction<IData>>;
   showForm: boolean;
   setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
+  todoId: string | undefined;
+  setTodoId: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 const AppProvider: React.FC<Props> = ({ children }) => {
   const [state, setState] = useState(data);
   const [showForm, setShowForm] = useState(false);
+  const [todoId, setTodoId] = useState<string | undefined>(undefined);
 
   return (
     <AppContext.Provider
@@ -25,6 +28,8 @@ const AppProvider: React.FC<Props> = ({ children }) => {
         setState,
         showForm,
         setShowForm,
+        todoId,
+        setTodoId,
       }}
     >
       {children}

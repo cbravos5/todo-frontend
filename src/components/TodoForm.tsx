@@ -1,13 +1,38 @@
-import React, { useState } from "react";
-import { MdClose } from "react-icons/md";
-import DatePicker from "react-datepicker";
-import { useGlobalContext } from "../context";
+import React, { useState } from 'react';
+import { format } from 'date-fns';
+import { MdClose } from 'react-icons/md';
+import DatePicker from 'react-datepicker';
+import { useGlobalContext } from '../context';
+
+const formatDate = (date: string | undefined) => {
+  if (!date) {
+    return null;
+  }
+  let [M, D, Y]: string[] | number[] = date.split('/');
+  M = parseInt(M) - 1;
+  D = parseInt(D);
+  Y = parseInt(Y);
+
+  return new Date(Y, M, D);
+};
 
 const TodoForm: React.FC<Record<string, never>> = () => {
-  const { state, setState, setShowForm } = useGlobalContext();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [deadline, setDeadline] = useState<Date | [Date, Date] | null>(null);
+  const { state, setState, setShowForm, todoId = '' } = useGlobalContext();
+
+  const currentTodo = state.todos[todoId];
+  const [todoTitle, todoDescription, todoDeadline] = todoId
+    ? [
+        currentTodo.title,
+        currentTodo.description,
+        formatDate(currentTodo.deadline),
+      ]
+    : ['', '', null];
+
+  const [title, setTitle] = useState(todoTitle);
+  const [description, setDescription] = useState(todoDescription);
+  const [deadline, setDeadline] = useState<Date | [Date, Date] | null>(
+    todoDeadline,
+  );
 
   const handleInput = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -15,20 +40,29 @@ const TodoForm: React.FC<Record<string, never>> = () => {
       id: title,
       title,
       description,
-      deadline: String(deadline),
+      deadline: format(deadline as Date, 'MM/dd/yyyy'),
     };
 
-    const hasTodo = state.todos[newTodo.id];
+    if (!currentTodo) {
+      const hasTodo = state.todos[newTodo.id];
 
-    if (hasTodo) {
-      console.log("A Todo with this title already exists");
-      return;
+      if (hasTodo) {
+        console.log('A Todo with this title already exists');
+        return;
+      }
     }
 
     const newState = { ...state };
 
+    if (currentTodo) {
+      newTodo.id = currentTodo.id;
+    }
+
     newState.todos[newTodo.id] = newTodo;
-    newState.columns.Pending.todoIds.push(newTodo.id);
+
+    if (!currentTodo) {
+      newState.columns.Pending.todoIds.push(newTodo.id);
+    }
 
     setState(newState);
     setShowForm(false);
@@ -67,7 +101,7 @@ const TodoForm: React.FC<Record<string, never>> = () => {
           />
         </div>
         <button type="submit" className="btn btn-success">
-          add
+          {currentTodo ? 'update' : 'add'}
         </button>
       </form>
     </div>
