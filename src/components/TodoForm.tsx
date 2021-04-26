@@ -3,18 +3,7 @@ import { format } from 'date-fns';
 import { MdClose } from 'react-icons/md';
 import DatePicker from 'react-datepicker';
 import { useGlobalContext } from '../context';
-
-const formatDate = (date: string | undefined) => {
-  if (!date) {
-    return null;
-  }
-  let [M, D, Y]: string[] | number[] = date.split('/');
-  M = parseInt(M) - 1;
-  D = parseInt(D);
-  Y = parseInt(Y);
-
-  return new Date(Y, M, D);
-};
+import { formatDate } from '../utils/formatDate';
 
 const TodoForm: React.FC<Record<string, never>> = () => {
   const { state, setState, setShowForm, todoId = '' } = useGlobalContext();
