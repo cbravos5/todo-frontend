@@ -1,5 +1,5 @@
 import { DropResult } from 'react-beautiful-dnd';
-import { IData } from './data';
+import { IData } from '../data';
 
 const onDragEnd = (result: DropResult, state: IData): IData => {
   const { destination, source, draggableId } = result;

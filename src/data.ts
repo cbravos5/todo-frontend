@@ -23,38 +23,49 @@ export interface IData {
   columnOrder: string[];
 }
 
-const data: IData = {
-  todos: {
-    'todo-1': {
-      id: 'todo-1',
-      title: 'Teste 1',
-      description: 'ashodohsdahosadohiasiohasdoih',
-      deadline: '',
-      columnId: 'Pending',
+export const getData = (): IData => {
+  const data: IData = {
+    todos: {
+      'todo-1': {
+        id: 'todo-1',
+        title: 'Teste 1',
+        description: 'ashodohsdahosadohiasiohasdoih',
+        deadline: '',
+        columnId: 'Pending',
+      },
+      'todo-2': {
+        id: 'todo-2',
+        title: 'Teste 2',
+        description: 'saiooidsasoidaisdjiads ijoasdijoidaosjiodsjiadoi',
+        deadline: '04/28/2021',
+        columnId: 'Completed',
+      },
     },
-    'todo-2': {
-      id: 'todo-2',
-      title: 'Teste 2',
-      description: 'saiooidsasoidaisdjiads ijoasdijoidaosjiodsjiadoi',
-      deadline: '04/28/2021',
-      columnId: 'Completed',
+    columns: {
+      Pending: {
+        id: 'Pending',
+        title: 'Pending',
+        todoIds: [],
+        color: 'warning',
+      },
+      Completed: {
+        id: 'Completed',
+        title: 'Completed',
+        todoIds: [],
+        color: 'success',
+      },
     },
-  },
-  columns: {
-    Pending: {
-      id: 'Pending',
-      title: 'Pending',
-      todoIds: [],
-      color: 'warning',
-    },
-    Completed: {
-      id: 'Completed',
-      title: 'Completed',
-      todoIds: [],
-      color: 'success',
-    },
-  },
-  columnOrder: ['Pending', 'Completed'],
-};
+    columnOrder: ['Pending', 'Completed'],
+  };
 
-export default data;
+  const todos = data.todos;
+  const todoIds = Object.keys(data.todos);
+
+  todoIds.forEach((id) => {
+    const column = todos[id].columnId;
+
+    data.columns[column].todoIds.push(id);
+  });
+
+  return data;
+};
