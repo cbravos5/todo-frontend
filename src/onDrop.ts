@@ -53,6 +53,9 @@ const onDragEnd = (result: DropResult, state: IData): IData => {
     todoIds: finishTodoIds,
   };
 
+  //will be async
+  state.todos[draggableId].columnId = finish.id;
+
   const newState = {
     ...state,
     columns: {

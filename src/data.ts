@@ -10,6 +10,7 @@ export interface ITodo {
   title: string;
   description: string;
   deadline: string;
+  columnId: string;
 }
 
 export interface IData {
@@ -29,19 +30,21 @@ const data: IData = {
       title: 'Teste 1',
       description: 'ashodohsdahosadohiasiohasdoih',
       deadline: '',
+      columnId: 'Pending',
     },
     'todo-2': {
       id: 'todo-2',
       title: 'Teste 2',
       description: 'saiooidsasoidaisdjiads ijoasdijoidaosjiodsjiadoi',
       deadline: '04/28/2021',
+      columnId: 'Completed',
     },
   },
   columns: {
     Pending: {
       id: 'Pending',
       title: 'Pending',
-      todoIds: ['todo-1', 'todo-2'],
+      todoIds: [],
       color: 'warning',
     },
     Completed: {

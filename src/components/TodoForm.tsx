@@ -41,6 +41,7 @@ const TodoForm: React.FC<Record<string, never>> = () => {
       title,
       description,
       deadline: format(deadline as Date, 'MM/dd/yyyy'),
+      columnId: 'Pending',
     };
 
     if (!currentTodo) {
@@ -56,6 +57,7 @@ const TodoForm: React.FC<Record<string, never>> = () => {
 
     if (currentTodo) {
       newTodo.id = currentTodo.id;
+      newTodo.columnId = currentTodo.columnId;
     }
 
     newState.todos[newTodo.id] = newTodo;
