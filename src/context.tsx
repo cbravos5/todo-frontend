@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { IData, getData } from './data';
 
 const AppContext = React.createContext({});
@@ -17,7 +17,7 @@ interface contextData {
 }
 
 const AppProvider: React.FC<Props> = ({ children }) => {
-  const data = getData();
+  const data = useCallback(() => getData(), []);
   const [state, setState] = useState(data);
   const [showForm, setShowForm] = useState(false);
   const [todoId, setTodoId] = useState<string | undefined>(undefined);
