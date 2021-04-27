@@ -3,6 +3,9 @@ import Column from '../components/Column';
 import TodoForm from '../components/TodoForm';
 import { useGlobalContext } from '../context';
 import onDrop from '../utils/onDrop';
+import '../styles/page.css';
+import './styles/todo.css';
+import './styles/form.css';
 
 const Home: React.FC<Record<string, never>> = () => {
   const {

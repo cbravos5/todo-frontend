@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Karma:wght@300;400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Karma:wght@300;400;500&display=swap');
 
 * {
   box-sizing: border-box;
@@ -7,6 +7,53 @@
 }
 
 body {
-  font-family: "Karma", serif;
+  font-family: 'Karma', serif;
   background: #cffaba;
+}
+
+.btn {
+  box-shadow: 0px 40px 64px -6px rgba(14, 31, 53, 0.36),
+    0px 1px 4px rgba(14, 31, 53, 0.12), 0px 4px 8px rgba(14, 31, 53, 0.1),
+    0px 6px 12px rgba(34, 37, 41, 0.08);
+  border-radius: 5px;
+
+  width: 90px;
+  height: 42px;
+
+  font-size: 20px;
+
+  transition: 0.1s linear;
+}
+
+.btn-lg {
+  width: 112px;
+  height: 48px;
+
+  margin-top: 10px;
+
+  font-size: 1.5rem;
+}
+
+.btn-secondary {
+  background-color: rgba(66, 164, 255, 0.8);
+}
+
+.btn-success {
+  background-color: rgba(18, 180, 4, 0.8);
+}
+
+button,
+button:focus,
+button:active {
+  border: 2px solid rgba(0, 0, 0, 0.4);
+  outline: none;
+  padding: 0;
+}
+
+.btn:hover {
+  filter: brightness(125%);
+}
+
+.btn:active {
+  border: 2px solid rgba(0, 0, 0, 0.7);
 }
