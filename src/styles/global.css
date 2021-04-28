@@ -55,5 +55,6 @@ button:active {
 }
 
 .btn:active {
-  border: 2px solid rgba(0, 0, 0, 0.7);
+  border: 2px solid rgba(0, 0, 0, 0.9);
+  filter: brightness(75%);
 }
