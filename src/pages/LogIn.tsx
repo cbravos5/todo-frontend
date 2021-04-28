@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import '../styles/user.css';
@@ -12,7 +13,7 @@ const LogIn: React.FC<RouteComponentProps<void>> = ({ history }) => {
   };
 
   return (
-    <div className="login-wrapper">
+    <motion.div exit={{ opacity: 0 }} className="login-wrapper">
       <h1 className="presentation">Log in and start to manage your ToDos</h1>
       <form action="log" onSubmit={handleLog} className="form-login">
         <div>
@@ -45,7 +46,7 @@ const LogIn: React.FC<RouteComponentProps<void>> = ({ history }) => {
           <span>Sign Up</span>
         </Link>
       </h4>
-    </div>
+    </motion.div>
   );
 };
 

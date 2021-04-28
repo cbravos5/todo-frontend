@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import '../styles/user.css';
@@ -16,7 +17,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="login-wrapper">
+    <motion.div exit={{ opacity: 0 }} className="login-wrapper">
       <h1 className="presentation">Create Account</h1>
       <form action="signup" onSubmit={handleSign} className="form-login">
         <div>
@@ -80,7 +81,7 @@ const SignUp = () => {
           <span>Log in</span>
         </Link>
       </h4>
-    </div>
+    </motion.div>
   );
 };
 

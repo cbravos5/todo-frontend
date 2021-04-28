@@ -8,6 +8,7 @@ import '../styles/page.css';
 import '../styles/todo.css';
 import '../styles/form.css';
 import { Link, withRouter } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Home = () => {
   const {
@@ -18,7 +19,7 @@ const Home = () => {
     setTodoId,
   } = useGlobalContext();
   return (
-    <>
+    <motion.div exit={{ opacity: 0 }}>
       <Link to="/login">
         <FaPowerOff className="logout" />
       </Link>
@@ -52,7 +53,7 @@ const Home = () => {
           <TodoForm />
         </div>
       )}
-    </>
+    </motion.div>
   );
 };
 
