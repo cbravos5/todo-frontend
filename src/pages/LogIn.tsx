@@ -1,13 +1,14 @@
 import { useState } from 'react';
+import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import '../styles/user.css';
 
-const LogIn: React.FC<Record<string, never>> = () => {
+const LogIn: React.FC<RouteComponentProps<void>> = ({ history }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLog = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(email, password);
+    history.push('/');
   };
 
   return (
@@ -39,10 +40,13 @@ const LogIn: React.FC<Record<string, never>> = () => {
         </button>
       </form>
       <h4 className="signup">
-        Don't have an account yet? <a href="#">Sign Up</a>
+        Don't have an account yet?
+        <Link to="/signup">
+          <span>Sign Up</span>
+        </Link>
       </h4>
     </div>
   );
 };
 
-export default LogIn;
+export default withRouter(LogIn);

@@ -1,13 +1,15 @@
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
+import { FaPowerOff } from 'react-icons/fa';
 import Column from '../components/Column';
 import TodoForm from '../components/TodoForm';
 import { useGlobalContext } from '../context';
 import onDrop from '../utils/onDrop';
 import '../styles/page.css';
-import './styles/todo.css';
-import './styles/form.css';
+import '../styles/todo.css';
+import '../styles/form.css';
+import { Link, withRouter } from 'react-router-dom';
 
-const Home: React.FC<Record<string, never>> = () => {
+const Home = () => {
   const {
     state,
     setState,
@@ -17,6 +19,9 @@ const Home: React.FC<Record<string, never>> = () => {
   } = useGlobalContext();
   return (
     <>
+      <Link to="/login">
+        <FaPowerOff className="logout" />
+      </Link>
       <div className="section">
         <p>Click to add a new ToDo</p>
         <button
@@ -51,4 +56,4 @@ const Home: React.FC<Record<string, never>> = () => {
   );
 };
 
-export default Home;
+export default withRouter(Home);

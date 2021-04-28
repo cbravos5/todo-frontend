@@ -1,3 +1,28 @@
+.logout {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  margin: 50px 120px 0 0;
+
+  width: 30px;
+  height: 30px;
+
+  cursor: pointer;
+
+  color: #000;
+
+  transition: color 0.2s;
+}
+
+.logout:hover {
+  color: #c1c1c1;
+}
+.logout:active {
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .section {
   padding: 90px 0 50px 0;
   text-align: center;

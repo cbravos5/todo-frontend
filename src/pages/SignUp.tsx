@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 import '../styles/user.css';
 
-const SignUp: React.FC<Record<string, never>> = () => {
+const SignUp = () => {
   const [formValues, setFormValues] = useState({
     email: '',
     name: '',
@@ -74,10 +75,13 @@ const SignUp: React.FC<Record<string, never>> = () => {
         </button>
       </form>
       <h4 className="signup">
-        Already have an account? <a href="#">Log in</a>
+        Already have an account?
+        <Link to="/login">
+          <span>Log in</span>
+        </Link>
       </h4>
     </div>
   );
 };
 
-export default SignUp;
+export default withRouter(SignUp);

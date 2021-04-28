@@ -67,7 +67,5 @@ export const getData = (): IData => {
     data.columns[column].todoIds.push(id);
   });
 
-  console.log('salve');
-
   return data;
 };
